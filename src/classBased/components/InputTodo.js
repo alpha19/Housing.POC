@@ -3,7 +3,7 @@ import React, { Component } from "react"
 class InputTodo extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { title : ""};
+		this.state = { title : "" };
 	}
 
 	onChange = e => {
@@ -35,7 +35,7 @@ class InputTodo extends Component {
 				value={this.state.title}
 				name="title"
 				onChange={this.onChange} />
-				<button className="intput-submit">Submit</button>
+				<button className="input-submit">Submit</button>
 			</form>
 		)
 	}

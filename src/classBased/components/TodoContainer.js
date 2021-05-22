@@ -7,23 +7,7 @@ import InputTodo from "./InputTodo"
 
 class TodoContainer extends Component {
 	state = {
-		todos : [
-			{
-				id: uuidv4(),
-				title: "Setup development environment",
-				completed: true
-			},
-			{
-				id: uuidv4(),
-				title: "Develop website and add content",
-				completed: false
-			},
-			{
-				id: uuidv4(),
-				title: "Deploy to live server",
-				completed: false
-			}
-		]
+		todos : [],
 	}
 
 	completeTodo = id => {
@@ -63,6 +47,39 @@ class TodoContainer extends Component {
 		});
 	}
 
+	updateTodo = (updatedTitle, id) => {
+  		this.setState({
+  			todos: this.state.todos.map(todo => {
+  				if(todo.id === id) {
+  					todo.title = updatedTitle;
+  				}
+  				return todo;
+  			}),
+  		});
+	}
+
+	async componentDidMount() {
+		const temp = localStorage.getItem("todos")
+		let loadedTodos = JSON.parse(temp)
+		if(!loadedTodos)
+		{
+			console.log("querying web api for todos json")
+			loadedTodos = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
+				.then(response => response.json())
+		}
+
+
+		this.setState({ todos: loadedTodos })
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.todos !== this.state.todos)
+		{
+			const temp = JSON.stringify(this.state.todos)
+			localStorage.setItem("todos", temp)
+		}
+	}
+
 	render() {
 		return (
 			<div className="container">
@@ -70,9 +87,10 @@ class TodoContainer extends Component {
 				<Header />
 				<InputTodo addTodo={this.addTodoItem}/>
 				<TodoList 
-					todos={this.state.todos} 
-					completeTodo={this.completeTodo} 
-					deleteTodo={this.deleteTodo}
+					todos={ this.state.todos } 
+					completeTodo={ this.completeTodo } 
+					deleteTodo={ this.deleteTodo }
+					updateTodo={ this.updateTodo }
 					/>
 				</div>
 			</div>

@@ -10,8 +10,9 @@ class TodoList extends Component {
 				<TodoItem 
 					key={todo.id} 
 					todo={todo} 
-					completeTodo={this.props.completeTodo}
-					deleteTodo={this.props.deleteTodo}>
+					completeTodo={ this.props.completeTodo }
+					deleteTodo={ this.props.deleteTodo }
+					updateTodo={ this.props.updateTodo }>
 				</TodoItem>)
 				)
 			}
