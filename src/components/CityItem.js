@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
+import { NavLink } from "react-router-dom"
 import { FaTrash } from "react-icons/fa"
 
 // styles
-import styles from "./styles/TodoItem.module.css"
+import styles from "./styles/CityItem.module.css"
 
-const TodoItem = props => {
+const CityItem = props => {
 	const [editing, setEditing] = useState(false)
 
 	const handleEditing = () => {
@@ -17,14 +18,7 @@ const TodoItem = props => {
 		}
 	}
 
-	const completedStyle = {
-		fontStyle: "italic",
-		color: "#595959",
-		opacity: 0.4,
-		textDecoration: "line-through"
-	}
-
-	const { completed, id, title } = props.todo
+	const { id, title } = props.city
 
 	let viewMode = {}
 	let editMode = {}
@@ -44,19 +38,17 @@ const TodoItem = props => {
 	return (
 		<li className={ styles.item }>
 			<div onDoubleClick={handleEditing} style={ viewMode }>
-				<input 
-					type="checkbox" 
-					className={ styles.checkbox }
-					checked={ completed }
-					onChange={() => props.toggleTodoCompletion(id)}
-				/>
-				<button
-					onClick={() => props.deleteTodo(id)}>
-					<FaTrash style={{color: "orangered", fontSize: "16px"}}
-					 />
-				</button>
-				<span style={ completed ? completedStyle : null }>
-					{ title }
+				<span>
+					<button
+						onClick={() => props.deleteCity(id)}>
+						<FaTrash style={{color: "orangered", fontSize: "16px"}}
+						 />
+					</button>
+					<NavLink 
+						to={`/city/${title}`}
+						activeClassName="active-link">
+						{ title }
+					</NavLink>
 				</span>
 			</div>
 			<input
@@ -65,7 +57,7 @@ const TodoItem = props => {
 			 	className={styles.textInput} 
 			 	value={ title }
 			 	onChange={ e => {
-			 		props.updateTodo(e.target.value, id)
+			 		props.updateCity(e.target.value, id)
 			 	}}
 			 	onKeyDown={handleUpdateDone}
 			 />
@@ -73,4 +65,4 @@ const TodoItem = props => {
 	)
 }
 
-export default TodoItem
+export default CityItem

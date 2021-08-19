@@ -3,15 +3,15 @@ import ReactDOM from "react-dom"
 
 import { BrowserRouter as Router} from "react-router-dom"
 
-import TodoContainer from "./functionBased/components/TodoContainer"
+import CityContainer from "./components/CityContainer"
 
 //stylesheet
-import "./functionBased/app.css"
+import "./app.css"
 
 ReactDOM.render(
 	<React.StrictMode>
 		<Router>
-			<TodoContainer />
+			<CityContainer />
 		</Router>
 	</React.StrictMode>, 
 	document.getElementById("root")

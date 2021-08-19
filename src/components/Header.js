@@ -18,7 +18,7 @@ const Header = () => {
 			        textTransform: "lowercase",
 			        textAlign: "center",
 			     }}
-			>Todos</h1>
+			>Cities</h1>
 		</header>
 		)
 }

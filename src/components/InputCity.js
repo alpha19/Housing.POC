@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { FaPlusCircle } from "react-icons/fa"
 
-const InputTodo = props => {
+const InputCity = props => {
   const [inputText, setInputText] = useState({
     title: "",
   })
@@ -16,7 +16,7 @@ const InputTodo = props => {
   const handleSubmit = e => {
     e.preventDefault()
     if (inputText.title.trim()) {
-      props.addTodoProps(inputText.title)
+      props.addCityProps(inputText.title)
       setInputText({
         title: "",
       })
@@ -30,7 +30,7 @@ const InputTodo = props => {
       <input
         type="text"
         className="input-text"
-        placeholder="Add todo..."
+        placeholder="Add city..."
         value={inputText.title}
         name="title"
         onChange={onChange}
@@ -43,4 +43,4 @@ const InputTodo = props => {
   )
 }
 
-export default InputTodo
+export default InputCity
