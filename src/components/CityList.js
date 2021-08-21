@@ -1,17 +1,17 @@
 import React from "react"
 
-import CityItem from "./CityItem"
+import CityTitle from "./CityTitle"
 
 const CityList = props => {
 	return (
 	<ul>
 		{props.cities.map(city => (
-			<CityItem 
+			<CityTitle
 				key={city.id} 
 				city={city} 
 				deleteCity={ props.deleteCity }
 				updateCity={ props.updateCity }>
-			</CityItem>)
+			</CityTitle>)
 			)
 		}
 	</ul>

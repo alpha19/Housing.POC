@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom"
 import Header from "./Header"
 import InputCity from "./InputCity"
 import CitiesList from "./CityList"
+import CityDetail from "./CityDetail"
 import NavBar from "./NavBar"
 import About from "../pages/About"
 import NotMatch from "../pages/NotMatch"
@@ -69,7 +70,7 @@ const CityContainer = () => {
 			    </div>
 		    </Route>
         <Route exact path="/city/:title/">
-          <p>UNDER CONSTRUCTION</p>
+          <CityDetail />
         </Route>
 		    <Route path="/about">
 		    	<About />
