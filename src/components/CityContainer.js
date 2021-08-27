@@ -28,19 +28,21 @@ const CityContainer = () => {
     ])
   }
 
-  const addCityItem = title => {
+  const addCityItem = (city, state) => {
     const newCity = {
       id: uuidv4(),
-      title: title,
+      cityName: city,
+      stateName: state,
     }
     setCities([...cities, newCity])
   }
 
-  const updateCity = (updatedTitle, id) => {
+  const updateCity = (updatedCityName, updatedStateName, id) => {
     setCities(
       cities.map(city => {
         if (city.id === id) {
-          city.title = updatedTitle
+          city.cityName = updatedCityName
+          city.updatedStateName = updatedStateName
         }
         return city
       })
@@ -69,7 +71,7 @@ const CityContainer = () => {
 			      </div>
 			    </div>
 		    </Route>
-        <Route exact path="/city/:title/">
+        <Route exact path="/city/:cityName/:stateName">
           <CityDetail />
         </Route>
 		    <Route path="/about">

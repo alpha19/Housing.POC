@@ -6,7 +6,7 @@ import { FaTrash } from "react-icons/fa"
 import styles from "./styles/CityTitle.module.css"
 
 const CityTitle= props => {
-	const { id, title } = props.city
+	const { id, cityName, stateName } = props.city
 
 	useEffect(() => {
 	  return () => {
@@ -24,9 +24,9 @@ const CityTitle= props => {
 						 />
 					</button>
 					<NavLink 
-						to={`/city/${title}`}
+						to={`/city/${cityName}/${stateName}`}
 						activeClassName="active-link">
-						{ title }
+						{ cityName }
 					</NavLink>
 				</span>
 			</div>
