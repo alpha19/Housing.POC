@@ -10,9 +10,7 @@ import "./app.css"
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Router>
-			<CityContainer />
-		</Router>
+	HELLO
 	</React.StrictMode>, 
 	document.getElementById("root")
 )
