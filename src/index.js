@@ -10,7 +10,7 @@ import "./app.css"
 
 ReactDOM.render(
 	<React.StrictMode>
-	HELLO
+		<h1>HELLO</h1>
 	</React.StrictMode>, 
 	document.getElementById("root")
 )
