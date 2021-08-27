@@ -1,9 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-import { BrowserRouter as Router} from "react-router-dom"
-
-import CityContainer from "./components/CityContainer"
 
 //stylesheet
 import "./app.css"
