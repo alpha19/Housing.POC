@@ -1,7 +1,7 @@
 // Imports
 import { v4 as uuidv4 } from "uuid"
 
-import RestRequest from "./RestRequest"
+import RestRequest from "../utils/RestRequest"
 
 class PropertyListings {
 	constructor(city, state) {

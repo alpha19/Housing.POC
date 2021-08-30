@@ -5,7 +5,7 @@ docker run \
     -v /app/node_modules \
     -p 3001:3000 \
     -e CHOKIDAR_USEPOLLING=true \
-    -e EACT_APP_RAPID_API_REALTY_IN_US="SECRET" \
+    -e REACT_APP_RAPID_API_REALTY_IN_US="" \
     kdedow/housing-poc-dev:latest
 
     docker run -it --rm -p 1337:80 kdedow/housing-poc-prod:latest
