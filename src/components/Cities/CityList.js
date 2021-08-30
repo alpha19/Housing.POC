@@ -5,7 +5,7 @@ import CityTitle from "./CityTitle"
 const CityList = props => {
 	return (
 	<ul>
-		{props.cities.map(city => (
+		{ props.cities.map(city => (
 			<CityTitle
 				key={city.id} 
 				city={city} 

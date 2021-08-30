@@ -1,18 +1,12 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { NavLink } from "react-router-dom"
 import { FaTrash } from "react-icons/fa"
 
 // styles
-import styles from "./styles/CityTitle.module.css"
+import styles from "./styles.css"
 
 const CityTitle= props => {
 	const { id, cityName, stateName } = props.city
-
-	useEffect(() => {
-	  return () => {
-	    console.log("Cleaning up...")
-	  }
-	}, [])
 
 	return (
 		<li className={ styles.item }>

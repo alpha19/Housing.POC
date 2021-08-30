@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react"
 import { Route, Switch } from "react-router-dom"
 
-import Header from "./Header"
+import Header from "../Header"
+import NavBar from "../NavBar"
+
 import InputCity from "./InputCity"
 import CitiesList from "./CityList"
 import CityDetail from "./CityDetail"
-import NavBar from "./NavBar"
-import About from "../pages/About"
-import NotMatch from "../pages/NotMatch"
+
+import About from "../../pages/About"
+import NotMatch from "../../pages/NotMatch"
 
 import { v4 as uuidv4 } from "uuid"
 
@@ -71,9 +73,23 @@ const CityContainer = () => {
 			      </div>
 			    </div>
 		    </Route>
-        <Route exact path="/city/:cityName/:stateName">
-          <CityDetail />
-        </Route>
+        <Route exact path="/city/:cityName/:stateName"
+          render = { (props) => 
+          (
+            <CityDetail 
+              city = 
+              { 
+                cities.filter
+                (city => 
+                  (
+                    city.cityName === props.match.params.cityName  && 
+                    city.stateName === props.match.params.stateName 
+                  )
+                )[0]
+              } 
+            />
+          )}
+        />
 		    <Route path="/about">
 		    	<About />
 		    </Route>

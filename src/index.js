@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 
 import { BrowserRouter as Router} from "react-router-dom"
 
-import CityContainer from "./components/CityContainer"
+import CityContainer from "./components/Cities/CityContainer"
 
 //stylesheet
 import "./app.css"
