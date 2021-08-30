@@ -1,12 +1,4 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
-
-// styles
-//					<NavLink 
-//						to={ props.link }
-//						activeClassName="active-link">
-//						{ title }
-//					</NavLink>
 
 import styles from "./styles.css"
 
