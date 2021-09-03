@@ -18,7 +18,10 @@ const CityTitle= props => {
 						 />
 					</button>
 					<NavLink 
-						to={`/city/${cityName}/${stateName}`}
+						to={{
+							pathname: `/city/${cityName}/${stateName}`,
+							city: { props.city }
+						}}
 						activeClassName="active-link">
 						{ cityName }
 					</NavLink>
