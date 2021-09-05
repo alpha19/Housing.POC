@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useRouteMatch } from 'react-router-dom'
 
-import { BasePage, Header} from './Styles';
+import { Container, Header, BaseDiv } from './styles';
 
 import NavBarLeft from './NavBarLeft'
+import Cities from './Cities'
+import City from './City'
 
-import About from 'shared/components/About'
+import About from 'About'
 
 const BaseContainer = () => {
   const match = useRouteMatch();
@@ -30,16 +32,15 @@ const BaseContainer = () => {
 
 
   return (
-  	<BasePage>
-	  	<NavBarLeft />
-      <Header>{title}<Header/>
+  	<Container>
+      <NavBarLeft />
+      <Header>{title}</Header>
       <BaseDiv>
         <Route exact path={`${match.path}`} component={Cities} />
-        <Route exact path={`${match.path}/:cityName/:stateName` component={City} />
-  		  <Route path="/about" component={About} />
+        <Route exact path={`${match.path}/:cityName/:stateName`} component={City} />
       </BaseDiv>
-	</BasePage>
+	  </Container>
   )
 }
 
-export default CityContainer
+export default BaseContainer

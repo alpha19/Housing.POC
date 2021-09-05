@@ -1,18 +1,16 @@
 import React from "react"
 
-import PropertyList from "../Properties/PropertyList"
+import Listings from './Listings'
 
-const CityDetail= props => {
+import { StyledCity } from './Styles'
+
+const City = props => {
 	const city = props.location.city
+
 	return (
-		<City
-			<header>
-				<h1>{ city.cityName }</h1>
-			</header>
-		</div>
-		<Listings
-			city =  { city }
-		/>
+		<StyledCity>
+			<Listings city={ city } />
+		</StyledCity>
 	)
 }
 

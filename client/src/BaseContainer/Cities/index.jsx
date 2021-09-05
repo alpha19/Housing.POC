@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Route, Switch } from "react-router-dom"
 
-import CitiesPage from './Styles';
+import { StyledCities } from './styles'
 
-import InputCity from "./InputCity"
-import CitiesList from "./CityList"
-import CityDetail from "./CityDetail"
+import Input from './Input'
+import List from './List'
 
 import { v4 as uuidv4 } from "uuid"
 
@@ -53,14 +52,14 @@ const Cities = () => {
   }, [cities])
 
   return (
-    <Cities>
-      <InputCity addCityProps={ addCityItem } />
-      <CitiesList
+    <StyledCities>
+      <Input addCityProps={ addCityItem } />
+      <List
         cities={ cities }
         deleteCity={ deleteCity }
         updateCity={ updateCity }
       />
-    </Cities>
+    </StyledCities>
   )
 }
 

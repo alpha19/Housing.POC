@@ -1,6 +1,6 @@
 import React from "react"
 
-const NotMatch = () => {
+const ErrorPage = () => {
 	return (
 		<div>
 			<h3>No match for this page</h3>
@@ -8,4 +8,4 @@ const NotMatch = () => {
 	)
 }
 
-export default NotMatch
+export default ErrorPage

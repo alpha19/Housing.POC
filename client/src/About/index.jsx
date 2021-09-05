@@ -2,7 +2,7 @@ import React from "react"
 
 import { Link, Route, useRouteMatch } from "react-router-dom"
 
-import SinglePage from "./SinglePage"
+import Detail from "./Detail"
 
 const About = () => {
 	const { url, path } = useRouteMatch()
@@ -18,7 +18,7 @@ const About = () => {
 				</li>
 			</ul>
 			<Route path={`${path}/:slug`}>
-				<SinglePage />
+				<Detail />
 			</Route>
 		</div>
 		)
