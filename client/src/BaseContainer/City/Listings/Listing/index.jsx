@@ -1,15 +1,17 @@
 import React from "react"
 
+import { StyledListing } from './styles'
+
 const Listing= props => {
 	const { address, price, link} = props.property
 
 	const title = address + " (Price: " + price + ")"
 	return (
-		<li className={ styles.item }>
+		<StyledListing>
 			<div>
 				<a href={link}>{title}</a>
 			</div>
-		</li>
+		</StyledListing>
 	)
 }
 

@@ -1,10 +1,11 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link,  useRouteMatch } from "react-router-dom"
 import { FaTrash } from "react-icons/fa"
 
 import { StyledCityItem } from './styles'
 
 const CityItem= props => {
+	const match = useRouteMatch();
 	const { id, cityName, stateName } = props.city
 
 	return (
@@ -17,7 +18,7 @@ const CityItem= props => {
 						 />
 					</button>
 					<Link to={{
-							pathname: `/city/${cityName}/${stateName}`,
+							pathname: `${match.url}/${cityName}/${stateName}`,
 							cityProps: { city: props.city } 
 						}}>
 						{ cityName }

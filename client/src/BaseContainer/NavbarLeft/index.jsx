@@ -35,8 +35,7 @@ const NavBarLeft = () => {
 				) : (
 					<FiMenu style={{ color: "#7b7b7b", width: "40px", height: "40px" }} />
 				)}
-			</NavBarButton>
-			<ul className={`menuNav ${navbarOpen ? " showStyle" : ""}`}>
+				<ul className={`menuNav ${navbarOpen ? " showStyle" : ""}`}>
 				{ links.map(link => {
 					return (
 						<li key={ link.id }>
@@ -51,6 +50,7 @@ const NavBarLeft = () => {
 					)
 				})}
 			</ul>
+			</NavBarButton>
 		</NavBar>
 	)
 }

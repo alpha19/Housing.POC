@@ -8,6 +8,8 @@ export const color = {
   warning: '#F89C1C', // orange
   secondary: '#F4F5F7', // light grey
 
+  teal: '#5b5b5b',
+
   textDarkest: '#172b4d',
   textDark: '#42526E',
   textMedium: '#5E6C84',

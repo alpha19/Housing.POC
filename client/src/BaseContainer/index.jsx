@@ -19,6 +19,7 @@ const BaseContainer = () => {
   const [title, setTitle] = useState(getInitialTitle())
 
   useEffect(() => {
+    console.log(location)
     const { pathname } = location;
     if (pathname === "/city/:cityName/:stateName")
     {

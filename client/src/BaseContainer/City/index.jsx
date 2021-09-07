@@ -4,8 +4,8 @@ import Listings from './Listings'
 
 import { StyledCity } from './Styles'
 
-const City = props => {
-	const city = props.location.city
+const City = ({ location }) => {
+	const city = location.cityProps.city
 
 	return (
 		<StyledCity>
