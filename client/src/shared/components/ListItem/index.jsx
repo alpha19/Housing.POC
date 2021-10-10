@@ -4,7 +4,6 @@ const ListItem = () => {
     return (
       <StyledList />
     );
-  },
-);
+  }
 
 export default ListItem

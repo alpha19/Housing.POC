@@ -1,10 +1,12 @@
 import React, { useState } from "react"
 import { NavLink } from "react-router-dom"
 
+import { Icon } from 'shared/components';
+
 import { MdClose } from "react-icons/md"
 import { FiMenu } from "react-icons/fi"
 
-import { NavBar, NavBarButton } from './styles'
+import { NavLeft, Link, Bottom, Item, ItemText } from './styles'
 
 const NavBarLeft = () => {
 	const links = [
@@ -12,47 +14,41 @@ const NavBarLeft = () => {
 			id: 1,
 			path: "/",
 			text: "Home",	
+			icon: "home"
 		},
 		{
 			id: 2,
+			// TODO: Implement modality to add city
+			path: "/",
+			text: "Add",
+			icon: "plus"
+		},
+		{
+			id: 3,
 			path: "/about",
 			text: "About",
+			icon: "help"
 		}
 	]
 
-	const [navbarOpen, setNavbarOpen] = useState(false)
-
-	const handleToggle = () => {
-		setNavbarOpen(prev => !prev)
-	}
-
-	const showStyle = { width: "100%" }
-
 	return (
-		<NavBar>
-			<NavBarButton onClick={ handleToggle }>{ navbarOpen ? (
-					<MdClose style={{ color: "#fff", width: "40px", height: "40px" }} />
-				) : (
-					<FiMenu style={{ color: "#7b7b7b", width: "40px", height: "40px" }} />
-				)}
-				<ul className={`menuNav ${navbarOpen ? " showStyle" : ""}`}>
-				{ links.map(link => {
-					return (
-						<li key={ link.id }>
-							<NavLink 
-								to={ link.path } 
-								activeClassName="active-link"
-								onClick={ () => handleToggle()} 
-								exact>
-								{ link.text }
-							</NavLink>
-						</li>
-					)
-				})}
-			</ul>
-			</NavBarButton>
-		</NavBar>
+		<NavLeft>
+			{ links.map( link => {
+				return (
+					<Link
+						key={ link.id }
+						to={ link.path } 
+						exact>
+						<Item>
+							<Icon type={ link.icon } size={25} />
+							<ItemText>{ link.text}</ItemText>
+						</Item>
+					</Link>
+				)
+			})}
+		</NavLeft>
 	)
 }
+
 
 export default NavBarLeft

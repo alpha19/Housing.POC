@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledCity = styled.div`
-	width: 100%;
-	padding: 8rem 10px 4rem;
+	margin-left: 20%;
+	margin-right: 20%;
+	align-items: center;
+    flex-direction: column;
 `;

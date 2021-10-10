@@ -30,7 +30,6 @@ const Listings = props => {
   	}, [listings])
 
 	return (
-	<>
 		<ul>
 			{ (listings[city.id] || []).map(property => (
 				<Listing
@@ -40,8 +39,6 @@ const Listings = props => {
 				)
 			}
 		</ul>
-		<button onClick={() => queryProperties() }>Query</button>
-	</>
 	)
 }
 

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 // TODO: Consider if these should be shared components/styles
 export const StyledCityForm = styled.form`
-  width: 100%;
   margin-bottom: 20px;
   display: flex;
   border-radius: calc(0.5 * 100px);
@@ -13,7 +12,7 @@ export const StyledCityForm = styled.form`
 export const StyledCityInput = styled.input`
   font-size: 1rem;
   font-weight: 400;
-  width: 85%;
+  width: 93%;
   height: 45px;
   padding-right: 5px;
   padding-left: 10px;

@@ -18,9 +18,10 @@ const BaseContainer = () => {
 
   const [title, setTitle] = useState(getInitialTitle())
 
+  // TODO: Don't think is being called when selecting a specific city...
   useEffect(() => {
-    console.log(location)
-    const { pathname } = location;
+    const { pathname } = location
+    console.log(pathname)
     if (pathname === "/city/:cityName/:stateName")
     {
       setTitle(props.match.params.cityName)

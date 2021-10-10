@@ -1,15 +1,71 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
-export const NavBar = styled.nav`
-position: relative;
+import { font, sizes, color, mixin, zIndexValues } from 'shared/utils/styles';
+
+export const NavLeft = styled.aside`
+  z-index: ${zIndexValues.navLeft};
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  height: 100vh;
+  width: ${sizes.appNavBarLeftWidth}px;
+  background: ${color.teal};
+  transition: all 0.1s;
+  ${mixin.hardwareAccelerate}
+  &:hover {
+    width: 200px;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.6);
+  }
 `;
 
-export const NavBarButton = styled.button`
-  position: fixed;
-  left: 40px;
-  top: 40px;
-  z-index: 10;
-  cursor: pointer;
-  background: transparent;
-  border: none;
+export const Link = styled(NavLink)`
+  display: block;
+  position: relative;
+  left: 0;
+  margin: 0;
+  transition: left 0.1s;
+`;
+
+export const Bottom = styled.div`
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+`;
+
+export const Item = styled.div`
+  position: relative;
+  width: 100%;
+  height: 42px;
+  line-height: 42px;
+  padding-left: 64px;
+  color: #deebff;
+  transition: color 0.1s;
+  ${mixin.clickable}
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  i {
+    position: absolute;
+    left: 18px;
+  }
+`;
+
+export const ItemText = styled.div`
+  position: relative;
+  right: 12px;
+  visibility: hidden;
+  opacity: 0;
+  text-transform: uppercase;
+  transition: all 0.1s;
+  transition-property: right, visibility, opacity;
+  ${font.bold}
+  ${font.size(12)}
+  ${NavLeft}:hover & {
+    right: 0;
+    visibility: visible;
+    opacity: 1;
+  }
 `;
