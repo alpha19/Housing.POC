@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { color } from 'shared/utils/styles';
+
 // TODO: Consider if these should be shared components/styles
 export const StyledCityForm = styled.form`
   margin-bottom: 20px;
@@ -28,11 +30,11 @@ export const StyledCityButton = styled.button`
   background:  transparent;
   height: 45px;
   outline: 10px;
-  border: none;
-  color: #5b5b5b;
-  text-transform: capitalize;
   cursor: pointer;
-  font-weight: 600;
   margin-right: 10px;
+  &:hover {
+    opacity: 0.6;
+  };
+  color: ${color.primary};
 `;
 

@@ -1,8 +1,9 @@
 import React from "react"
-import { Link,  useRouteMatch } from "react-router-dom"
-import { FaTrash } from "react-icons/fa"
+import { useRouteMatch } from "react-router-dom"
 
-import { StyledCityItem } from './styles'
+import Icon from 'shared/components/Icon';
+
+import { StyledCityItem, StyledLink, StyledButton } from './styles'
 
 const CityItem= props => {
 	const match = useRouteMatch();
@@ -12,17 +13,16 @@ const CityItem= props => {
 		<StyledCityItem>
 			<div>
 				<span>
-					<button
+					<StyledButton
 						onClick={() => props.deleteCity(id)}>
-						<FaTrash style={{color: "orangered", fontSize: "16px"}}
-						 />
-					</button>
-					<Link to={{
+						<Icon type="trash" marginTop='2px' />
+					</StyledButton>
+					<StyledLink to={{
 							pathname: `${match.url}/${cityName}/${stateName}`,
 							cityProps: { city: props.city } 
 						}}>
 						{ cityName }
-					</Link>
+					</StyledLink>
 				</span>
 			</div>
 		</StyledCityItem>

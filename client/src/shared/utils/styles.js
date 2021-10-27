@@ -2,13 +2,11 @@ import { css } from 'styled-components';
 import Color from 'color';
 
 export const color = {
-  primary: '#0052cc', // Blue
+  primary: '#5b5b5b', // Blue
   success: '#0B875B', // green
   danger: '#E13C3C', // red
   warning: '#F89C1C', // orange
   secondary: '#F4F5F7', // light grey
-
-  teal: '#5b5b5b',
 
   textDarkest: '#172b4d',
   textDark: '#42526E',

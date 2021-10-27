@@ -18,28 +18,15 @@ const BaseContainer = () => {
 
   const [title, setTitle] = useState(getInitialTitle())
 
-  // TODO: Don't think is being called when selecting a specific city...
-  useEffect(() => {
-    const { pathname } = location
-    console.log(pathname)
-    if (pathname === "/city/:cityName/:stateName")
-    {
-      setTitle(props.match.params.cityName)
-    }
-    else
-    {
-      setTitle(getInitialTitle())
-    }
-  }, [location]);
-
-
   return (
   	<Container>
       <NavBarLeft />
       <Header>{title}</Header>
       <BaseDiv>
         <Route exact path={`${match.path}`} component={Cities} />
-        <Route exact path={`${match.path}/:cityName/:stateName`} component={City} />
+        <Route exact path={`${match.path}/:cityName/:stateName`}
+          render={ props => <City setTitle={setTitle} /> }
+        />
       </BaseDiv>
 	  </Container>
   )

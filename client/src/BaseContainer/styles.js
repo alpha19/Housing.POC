@@ -16,7 +16,7 @@ export const Header = styled.h1`
   margin-bottom: 2rem;
   text-align: center;
   align-items: center;
-  color: ${color.teal};
+  color: ${color.primary};
 `;
 
 export const Container = styled.div`

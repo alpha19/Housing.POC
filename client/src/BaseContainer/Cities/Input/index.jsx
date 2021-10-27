@@ -1,7 +1,8 @@
 import React, { useState } from "react"
-import { FaPlusCircle } from "react-icons/fa"
 
 import { StyledCityForm, StyledCityInput, StyledCityButton } from './styles'
+
+import Icon from 'shared/components/Icon';
 
 const Input = props => {
   const [inputText, setInputText] = useState({
@@ -44,8 +45,7 @@ const Input = props => {
         onChange={onChange}
       />
       <StyledCityButton className="input-submit">
-      	<FaPlusCircle style={{ color: "darkcyan", fontSize: "20px", marginTop: "2px"}}
-      	/>
+        <Icon type="plus" marginTop='2px' />
       </StyledCityButton>
     </StyledCityForm>
   )

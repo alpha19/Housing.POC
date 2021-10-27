@@ -2,19 +2,12 @@ import axios from 'axios';
 
 import { objectToQueryString } from 'shared/utils/url';
 
-const defaults = {
-		baseURL: process.env.API_URL || 'http://localhost:3000',
-	  headers: () => ({
-	    'Content-Type': 'application/json',
-	  }),		
-};
-
-const api = (method, url, variables) =>
+const api = (method, urlBase, headers, url, variables) =>
   new Promise((resolve, reject) => {
     axios({
-      url: `${defaults.baseURL}${url}`,
+      url: `${urlBase}${url}`,
       method,
-      headers: defaults.headers(),
+      headers: headers,
       params: method === 'get' ? variables : undefined,
       data: method !== 'get' ? variables : undefined,
       paramsSerializer: objectToQueryString,

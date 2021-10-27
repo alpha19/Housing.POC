@@ -23,11 +23,11 @@ module.exports = {
         use: ['style-loader', { loader: 'css-loader' }],
       },
       {
-        test: /\.(jpe?g|png|gif|woff2?|eot|ttf|otf|svg)$/,
+        test: /\.(ttf|eot|svg)(\?[a-z0-9]+)?$/,
         use: [
           {
             loader: 'url-loader',
-            options: { limit: 15000 },
+            options: { limit: 100000 },
           },
         ],
       },

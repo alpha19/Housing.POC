@@ -7,6 +7,7 @@ const fontIconCodes = {
   [`home`]: '\\e902',
   [`plus`]: '\\ea0a',
   [`help`]: '\\ea09',
+  [`trash`]: '\\e9ad',
 };
 
 const propTypes = {
