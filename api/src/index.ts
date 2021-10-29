@@ -1,6 +1,18 @@
-import express from 'express'
-import cors from 'cors'
-import helmet from 'helmet'
+import 'reflect-metadata';
+
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+
+import { attachPrivateRoutes } from './routes';
+
+const establishDatabaseConnection = async (): Promise<void> => {
+  try {
+    await createDatabaseConnection();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const initializeExpress = (): void => {
 	const app = express();
@@ -10,8 +22,10 @@ const initializeExpress = (): void => {
 	app.use(express.json());
 	app.use(express.urlencoded());
 
+	attachPrivateRoutes(app);
 
-}
+	app.listen(process.env.PORT || 3000);
+};
 
 const initializeApp = async (): Promise<void> => {
   initializeExpress();

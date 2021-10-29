@@ -8,7 +8,6 @@ import PropertyListings from "../../services/PropertyListings"
 import { StyledCity, ActionButton } from './styles'
 
 const City = ({ setTitle }) => {
-	console.log("here")
 	const match = useRouteMatch()
 	const city = match.params.cityName
 	const state = match.params.stateName
@@ -31,7 +30,7 @@ const City = ({ setTitle }) => {
 		let tempListings = { [city.id] : newListings }
 		console.log(tempListings)
 		setListings({ ...listings, [city.id] : newListings })
-		
+
 		setIsUpdating(false)
   	}
 

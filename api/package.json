@@ -8,7 +8,7 @@
     "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
     "start": "nodemon --exec ts-node --files src/index.ts",
     "start:production": "pm2 start --name 'housing_api' node -- -r ./tsconfig-paths.js build/index.js",
-    "build": "cd src && tsc",
+    "build": "cd src && tsc"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +16,10 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "helmet": "^4.6.0"
+    "helmet": "^4.6.0",
+    "pg": "^8.7.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.38"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
