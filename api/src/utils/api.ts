@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { objectToQueryString } from 'shared/utils/url';
+import { objectToQueryString } from 'utils/url';
 
 const api = (method, urlBase, headers, url, variables) =>
   new Promise((resolve, reject) => {

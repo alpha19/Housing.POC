@@ -4,6 +4,8 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 
+import { createDatabaseConnection } from 'database/createConnection';
+
 import { attachPrivateRoutes } from './routes';
 
 const establishDatabaseConnection = async (): Promise<void> => {
