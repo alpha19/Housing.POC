@@ -4,18 +4,10 @@ import { catchErrors } from 'utils/error';
 
 import { updateEntity, deleteEntity, createEntity } from 'entities';
 
-export const get = catchErrors(async (req, res)) => {
-	const listing = findEntityOrThrow(Listing, req.params.listingId);
-	req.respond( { listing });
-}
+import api from 'services/realty-us'
 
 export const create = catchErrors(async (req, res) => {
   const listing = await createEntity(Listing, req.body);
-  res.respond({ listing });
-});
-
-export const update = catchErrors(async (req, res) => {
-  const listing = await updateEntity(Listing, req.params.listingId, req.body);
   res.respond({ listing });
 });
 
@@ -24,12 +16,62 @@ export const remove = catchErrors(async (req, res) => {
   res.respond({ listing });
 });
 
-export const queryAndUpdate = catchErrors(async (req, res) => {
-	// Retrieve the city via :cityId
+export const updateListingsByCityId = catchErrors(async (req, res) => {
+	const { cityId } = req.cityId;
 
-	// Delete the current listings associated with the city (if applicable)
+	// Delete all the returned listings
+	const listings = getListings(cityId);
+	for (var listing in listings)
+	{
+		await deleteEntity(Listing, listing.listingId);
+	}
+	listings = []
 
-	// Query web API for new listings
+	// Query for new listings
+	const city = findEntityOrThrow(City, req.params.cityId);
 
-	// Save new listings in db
+	const params = {
+		city: city.city,
+		state_code: city.state,
+		offset: 0,
+		limit: 20,
+		sort: 'relevance'
+	}
+
+	api.get('/properties/v2/list-for-sale', params).then(
+		data => {
+			// Update listings based on results of query
+			for(var key in body["properties"])
+			{
+				const listing = await createEntity(Listing) ({
+					price: key["price"],
+					address: key["address"]["line"],
+					link: key["rdc_web_url"],
+				});
+
+				listings.push(property);
+			}
+		},
+	);
+
+	res.respond({ listings });
 });
+
+export const getListingsByCityId = catchErrors(async (req, res)) => {
+	const { cityId } = req.cityId;
+	const listings = getListings(cityId);
+    res.respond({ listings });
+}
+
+const getListings = (cityId) => {
+	const whereSQL = 'listing.cityId = :cityId';
+
+	let listings = await Listing.createQueryBuilder('listing')
+		.select()
+		.where(whereSQL)
+    	.getMany();
+
+    return listings;
+}
+
+export const updateCashflow

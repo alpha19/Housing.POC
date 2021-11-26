@@ -35,6 +35,9 @@ class Listing extends BaseEntity {
   		{ onDelete: 'CASCADE' },
   	)
   	city: City;
+
+  	@Column('integer')
+  	cityId: number;
 }
 
 export default Listing;
