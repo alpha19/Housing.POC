@@ -17,7 +17,7 @@ export const remove = catchErrors(async (req, res) => {
 });
 
 export const updateListingsByCityId = catchErrors(async (req, res) => {
-	const { cityId } = req.cityId;
+	const { cityId } = req.params.cityId;
 
 	// Delete all the returned listings
 	const listings = getListings(cityId);
@@ -58,7 +58,7 @@ export const updateListingsByCityId = catchErrors(async (req, res) => {
 });
 
 export const getListingsByCityId = catchErrors(async (req, res)) => {
-	const { cityId } = req.cityId;
+	const { cityId } = req.params.cityId;
 	const listings = getListings(cityId);
     res.respond({ listings });
 }
@@ -73,5 +73,3 @@ const getListings = (cityId) => {
 
     return listings;
 }
-
-export const updateCashflow

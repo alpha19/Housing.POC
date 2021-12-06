@@ -1,10 +1,11 @@
+import 'module-alias/register';
 import 'reflect-metadata';
 
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 
-import { createDatabaseConnection } from 'database/createConnection';
+import createDatabaseConnection from 'database/createConnection';
 
 import { attachPrivateRoutes } from './routes';
 
@@ -30,6 +31,7 @@ const initializeExpress = (): void => {
 };
 
 const initializeApp = async (): Promise<void> => {
+  await establishDatabaseConnection();
   initializeExpress();
 };
 

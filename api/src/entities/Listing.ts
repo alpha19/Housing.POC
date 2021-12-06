@@ -1,7 +1,8 @@
 import {
 	BaseEntity,
+  Entity,
 	Column,
-	PrimaryGeneratedColum,
+	PrimaryGeneratedColumn,
 	CreateDateColumn,
 	UpdateDateColumn,
 	ManyToOne
@@ -11,33 +12,33 @@ import { City } from '.';
 
 @Entity()
 class Listing extends BaseEntity {
-	@PrimaryGeneratedColum
+	@PrimaryGeneratedColumn()
 	id: number;
 
-  	@CreateDateColumn({ type: 'timestamp' })
-  	createdAt: Date;
+	@CreateDateColumn({ type: 'timestamp' })
+	createdAt: Date;
 
-  	@UpdateDateColumn({ type: 'timestamp' })
-  	updatedAt: Date;
+	@UpdateDateColumn({ type: 'timestamp' })
+	updatedAt: Date;
 
-  	@Column('text')
-  	price: string;
+	@Column('text')
+	price: string;
 
-  	@Column('text')
-  	address: string;
+	@Column('text')
+	address: string;
 
-  	@Column('text')
-  	link: string;
+	@Column('text')
+	link: string;
 
-  	@ManyToOne (
-  		() => City,
-  		city => city.listings,
-  		{ onDelete: 'CASCADE' },
-  	)
-  	city: City;
+	@ManyToOne (
+		() => City,
+		city => city.listings,
+		{ onDelete: 'CASCADE' },
+	)
+	city: City;
 
-  	@Column('integer')
-  	cityId: number;
+	@Column('integer')
+	cityId: number;
 }
 
 export default Listing;

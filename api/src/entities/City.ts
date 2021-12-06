@@ -1,7 +1,8 @@
 import {
 	BaseEntity,
+  Entity,
 	Column,
-	PrimaryGeneratedColum,
+	PrimaryGeneratedColumn,
 	CreateDateColumn,
 	UpdateDateColumn,
 	OneToMany
@@ -11,26 +12,26 @@ import { Listing } from '.';
 
 @Entity()
 class City extends BaseEntity {
-	@PrimaryGeneratedColum
+	@PrimaryGeneratedColumn()
 	id: number;
 
-  	@CreateDateColumn({ type: 'timestamp' })
-  	createdAt: Date;
+	@CreateDateColumn({ type: 'timestamp' })
+	createdAt: Date;
 
-  	@UpdateDateColumn({ type: 'timestamp' })
-  	updatedAt: Date;
+	@UpdateDateColumn({ type: 'timestamp' })
+	updatedAt: Date;
 
-  	@Column('text')
-  	city: string;
+	@Column('text')
+	city: string;
 
-  	@Column('text')
-  	state: string;
+	@Column('text')
+	state: string;
 
-  	@OneToMany (
-  		() => Listing,
-  		listing => listing.city,
-  	)
-  	listings: Listing[];
+	@OneToMany (
+		() => Listing,
+		listing => listing.city,
+	)
+	listings: Listing[];
 }
 
 export default City;

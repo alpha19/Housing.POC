@@ -1,38 +1,31 @@
-import { City } from 'entities';
-
 import { catchErrors } from 'utils/error';
 
-import { updateEntity, deleteEntity, createEntity } from 'entities';
+import { City, Listing, findEntityOrThrow, updateEntity, deleteEntity, createEntity } from 'entities';
 
-export const getAll = catchErrors(async (req, res)) => {
-
-});
-
-export const get = catchErrors(async (req, res)) => {
-	const city = findEntityOrThrow(City, req.params.cityId);
-	req.respond( { listing });
+export const get = catchErrors(async (req, res) => {
+	const city = await findEntityOrThrow(City, req.params.cityId);
+	res.send({ city });
 });
 
 export const create = catchErrors(async (req, res) => {
   const city = await createEntity(City, req.body);
-  res.respond({ city });
+  res.send({ city });
 });
 
 export const update = catchErrors(async (req, res) => {
   const city = await updateEntity(City, req.params.cityId, req.body);
-  res.respond({ city });
+  res.send({ city });
 });
 
 export const remove = catchErrors(async (req, res) => {
   const city = await deleteEntity(City, req.params.cityId);
-  res.respond({ city });
+  res.send({ city });
 });
 
-export const getCities = catchErrors(async (req, res) => {
-
+export const getCities = catchErrors(async (_req, res) => {
 	let cities = await Listing.createQueryBuilder('city')
 		.select()
     	.getMany();
 
-    res.respond({ cities });
+    res.send({ cities });
 });
