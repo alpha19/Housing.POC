@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { objectToQueryString } from 'utils/url';
 
-const api = (method, urlBase, headers, url, variables) =>
+const api = (method: string, urlBase: string, headers: any, url: string, variables: any) =>
   new Promise((resolve, reject) => {
     axios({
       url: `${urlBase}${url}`,

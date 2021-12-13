@@ -2,33 +2,34 @@ import { Listing, City } from 'entities';
 
 import { catchErrors } from 'utils/error';
 
-import { updateEntity, deleteEntity, createEntity } from 'entities';
+import { deleteEntity, createEntity, findEntityOrThrow } from 'entities';
 
-import api from 'services/realty-us'
+import api from 'services/realty-us';
 
 export const create = catchErrors(async (req, res) => {
   const listing = await createEntity(Listing, req.body);
-  res.respond({ listing });
+  res.send({ listing });
 });
 
 export const remove = catchErrors(async (req, res) => {
   const listing = await deleteEntity(Listing, req.params.listingId);
-  res.respond({ listing });
+  res.send({ listing });
 });
 
 export const updateListingsByCityId = catchErrors(async (req, res) => {
-	const { cityId } = req.params.cityId;
+	const cityId = req.params.cityId;
 
 	// Delete all the returned listings
-	const listings = getListings(cityId);
-	for (var listing in listings)
+	let listings = await getListings(cityId);
+	for (var listing of listings)
 	{
-		await deleteEntity(Listing, listing.listingId);
+		await deleteEntity(Listing, listing.id);
 	}
+
 	listings = []
 
 	// Query for new listings
-	const city = findEntityOrThrow(City, req.params.cityId);
+	const city = await findEntityOrThrow(City, req.params.cityId);
 
 	const params = {
 		city: city.city,
@@ -38,38 +39,38 @@ export const updateListingsByCityId = catchErrors(async (req, res) => {
 		sort: 'relevance'
 	}
 
-	api.get('/properties/v2/list-for-sale', params).then(
-		data => {
+	await api.get('/properties/v2/list-for-sale', params).then(
+		async (data: any) => {
 			// Update listings based on results of query
-			for(var key in body["properties"])
+			for(var key of data["properties"])
 			{
-				const listing = await createEntity(Listing) ({
+				const listing = await createEntity(Listing, {
 					price: key["price"],
 					address: key["address"]["line"],
 					link: key["rdc_web_url"],
 				});
 
-				listings.push(property);
+				listings.push(listing);
 			}
 		},
 	);
 
-	res.respond({ listings });
+	res.send({ listings });
 });
 
-export const getListingsByCityId = catchErrors(async (req, res)) => {
-	const { cityId } = req.params.cityId;
-	const listings = getListings(cityId);
-    res.respond({ listings });
-}
+export const getListingsByCityId = catchErrors(async (req, res) => {
+	const cityId = req.params.cityId;
+	const listings = await getListings(cityId);
+    res.send({ listings });
+});
 
-const getListings = (cityId) => {
+const getListings = async (cityId: string): Promise<Array<Listing>> => {
 	const whereSQL = 'listing.cityId = :cityId';
 
 	let listings = await Listing.createQueryBuilder('listing')
 		.select()
-		.where(whereSQL)
+		.where(whereSQL, { cityId })
     	.getMany();
 
     return listings;
-}
+};
