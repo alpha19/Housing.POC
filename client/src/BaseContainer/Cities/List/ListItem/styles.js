@@ -6,7 +6,7 @@ import { color } from 'shared/utils/styles';
 
 // Shared with StyledListing!!!
 // TODO: Move to shared location and share with Listing component
-export const StyledCityItem = styled.li`
+export const StyledListItem = styled.li`
   font-size: 1.3rem;
   font-weight: 500;
   list-style-type: none;

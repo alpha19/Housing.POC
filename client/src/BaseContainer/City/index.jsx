@@ -4,6 +4,7 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import Listings from './Listings'
 
 import PropertyListings from "../../services/PropertyListings"
+import useApi from 'shared/utils/api';
 
 import { StyledCity, ActionButton } from './styles'
 

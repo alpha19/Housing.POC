@@ -4,6 +4,8 @@ import { StyledCityForm, StyledCityInput, StyledCityButton } from './styles'
 
 import Icon from 'shared/components/Icon';
 
+import api from 'shared/utils/api';
+
 const Input = props => {
   const [inputText, setInputText] = useState({
     title: "",
@@ -25,7 +27,8 @@ const Input = props => {
       } else if (splitStr[1].length !== 2) {
         alert("Bad input! Please enter state acronym (two characters)!")
       } else {
-        props.addCityProps(splitStr[0].trim(), splitStr[1].trim())
+        props.addCity(splitStr[0].trim(), splitStr[1].trim())
+        app.post('/api/city', cities.create);
         setInputText({
           title: "",
         })
@@ -33,6 +36,16 @@ const Input = props => {
     } else {
       alert("Please write item")
     }
+  }
+
+  // TODOOOO:
+  const addCity = (city, state) => {
+    const newCity = {
+      city: city,
+      state: state,
+    }
+    app.post('/api/city', cities.create);
+    setCities([...cities, newCity])
   }
 
   return (

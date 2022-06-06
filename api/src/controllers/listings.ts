@@ -12,7 +12,7 @@ export const create = catchErrors(async (req, res) => {
 });
 
 export const remove = catchErrors(async (req, res) => {
-  const listing = await deleteEntity(Listing, req.params.listingId);
+  const listing = await deleteEntity(Listing, req.params.id);
   res.send({ listing });
 });
 
@@ -28,31 +28,31 @@ export const updateListingsByCityId = catchErrors(async (req, res) => {
 
 	listings = []
 
-	// Query for new listings
 	const city = await findEntityOrThrow(City, req.params.cityId);
-
-	const params = {
+	const params = 
+	{
 		city: city.city,
 		state_code: city.state,
 		offset: 0,
 		limit: 20,
 		sort: 'relevance'
-	}
+	};
 
 	await api.get('/properties/v2/list-for-sale', params).then(
 		async (data: any) => {
-			// Update listings based on results of query
-			for(var key of data["properties"])
+			for(var key of data![<any>"properties"])
 			{
 				const listing = await createEntity(Listing, {
-					price: key["price"],
-					address: key["address"]["line"],
-					link: key["rdc_web_url"],
+					price: key[<any>"price"],
+					address: key[<any>"address"][<any>"line"],
+					link: key[<any>"rdc_web_url"],
+					thumbnail: key[<any>"thumbnail"],
+					city: city,
 				});
 
 				listings.push(listing);
 			}
-		},
+		}
 	);
 
 	res.send({ listings });

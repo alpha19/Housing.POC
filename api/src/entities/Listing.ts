@@ -30,15 +30,15 @@ class Listing extends BaseEntity {
 	@Column('text')
 	link: string;
 
+	@Column('text')
+	thumbnail: string;
+
 	@ManyToOne (
 		() => City,
 		city => city.listings,
 		{ onDelete: 'CASCADE' },
 	)
 	city: City;
-
-	@Column('integer')
-	cityId: number;
 }
 
 export default Listing;

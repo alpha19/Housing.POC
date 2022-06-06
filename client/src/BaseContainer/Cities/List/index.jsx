@@ -5,15 +5,7 @@ import CityItem from "./CityItem"
 const List = props => {
 	return (
 	<ul>
-		{ props.cities.map(city => (
-			<CityItem
-				key={city.id} 
-				city={city} 
-				deleteCity={ props.deleteCity }
-				updateCity={ props.updateCity }>
-			</CityItem>)
-			)
-		}
+		{ props.cities.map(city => ( <ListItem id={ city.id } setCities = { props.setCities } /> )}
 	</ul>
 	)
 }
