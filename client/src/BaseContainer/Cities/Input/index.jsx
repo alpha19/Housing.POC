@@ -4,58 +4,49 @@ import { StyledCityForm, StyledCityInput, StyledCityButton } from './styles'
 
 import Icon from 'shared/components/Icon';
 
-import api from 'shared/utils/api';
+import { addCity } from 'shared/utils/city';
 
-const Input = props => {
-  const [inputText, setInputText] = useState({
-    title: "",
-  })
+const Input = ( { setCities } ) => {
+  const [cityInput, setCityInput] = useState("")
 
-  const onChange = e => {
-    setInputText({
-      ...inputText,
-      [e.target.name]: e.target.value,
-    })
+  const onCityInputChange = e => {
+    setCityInput(e.target.value);
   }
 
-  const handleSubmit = e => {
+  const validateCitySubmission = () => {
+    if (!cityInput.trim()) { return false; }
+
+    let cityAndState = cityInput.split(',').map(element => element.trim());;
+    if (cityAndState.length !== 2) { return false; }
+
+    const [city, state] = cityAndState;
+    if (state.length !== 2) { return false; }
+
+    return true;
+  }
+
+  const handleNewCitySubmission = e => {
     e.preventDefault()
-    if (inputText.title.trim()) {
-      var splitStr = inputText.title.split(',')
-      if (splitStr.length !== 2) {
-        alert("Bad input.. Enter city and state separated by comma!")
-      } else if (splitStr[1].length !== 2) {
-        alert("Bad input! Please enter state acronym (two characters)!")
-      } else {
-        props.addCity(splitStr[0].trim(), splitStr[1].trim())
-        app.post('/api/city', cities.create);
-        setInputText({
-          title: "",
-        })
-      }
-    } else {
-      alert("Please write item")
-    }
-  }
 
-  // TODOOOO:
-  const addCity = (city, state) => {
-    const newCity = {
-      city: city,
-      state: state,
+    if (!validateCitySubmission()) { 
+      alert("Input must be a city name and state abbreviation separated by commas. State abbreviation must be two characters")
+      return; 
     }
-    app.post('/api/city', cities.create);
-    setCities([...cities, newCity])
+
+    let city, state;
+    [city, state] = cityInput.split(',').map(element => element.trim());
+
+    addCity(city, state, setCities);
+    setCityInput("");
   }
 
   return (
-    <StyledCityForm onSubmit={handleSubmit}>
+    <StyledCityForm onSubmit={ handleNewCitySubmission }>
       <StyledCityInput
         type="text"
         placeholder="Add city and state (separated by comma)..."
-        value={inputText.title}
-        name="title"
-        onChange={onChange}
+        value= { cityInput }
+        onChange={ onCityInputChange }
       />
       <StyledCityButton className="input-submit">
         <Icon type="plus" marginTop='2px' />

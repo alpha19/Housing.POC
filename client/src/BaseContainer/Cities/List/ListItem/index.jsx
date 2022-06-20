@@ -3,37 +3,29 @@ import { useRouteMatch } from "react-router-dom"
 
 import Icon from 'shared/components/Icon';
 
-import { StyledCityListItem, StyledLink, StyledButton } from './styles'
+import { StyledListItem, StyledLink, StyledButton } from './styles'
 
-import { getCities, getCity, deleteCity } from 'shared/utils/city';
+import { getCity, deleteCity } from 'shared/utils/city';
 
-const ListItem = props => {
+const ListItem = ( { city, setCities } ) => {
 	const match = useRouteMatch();
-	const [city, setCity] = useState(getCity(props.id));
 
-	const deleteCityAndUpdate = id => {
-		deleteCity(id);
-		props.setCities(getCities());
+	const deleteCityAndRefresh = () => {
+		deleteCity(city.id, setCities);
 	 }
 
 	return (
 		<StyledListItem>
 			<div>
 				<span>
-					<StyledButton
-						onClick={() => deleteCityAndUpdate(id) }>
+					<StyledButton onClick={() => deleteCityAndRefresh() } >
 						<Icon type="trash" marginTop='2px' />
 					</StyledButton>
-					<StyledLink to={{
-							pathname: `${match.url}/${city.city}/${city.state}`,
-							cityProps: { city: city } 
-						}}>
-						{ city.city }
-					</StyledLink>
+					<StyledLink to={{pathname: `${match.url}/${city.id}`, state: { city: city.city } }}>{ city.city }</StyledLink>
 				</span>
 			</div>
 		</StyledListItem>
 	)
 }
 
-export default CityListItem
+export default ListItem

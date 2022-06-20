@@ -1,53 +1,34 @@
 import React, { useState, useEffect } from "react"
-import { Route, Switch, useRouteMatch } from 'react-router-dom'
+import { useRouteMatch, useLocation } from 'react-router-dom'
 
 import Listings from './Listings'
 
-import PropertyListings from "../../services/PropertyListings"
-import useApi from 'shared/utils/api';
+import { updateListings } from 'shared/utils/listings';
 
 import { StyledCity, ActionButton } from './styles'
 
-const City = ({ setTitle }) => {
-	const match = useRouteMatch()
-	const city = match.params.cityName
-	const state = match.params.stateName
+const City = ( { setTitle } ) => {
+	const match = useRouteMatch();
+	const location = useLocation();
 
-	const [isUpdating, setIsUpdating] = useState(false)
-	const [listings, setListings] = useState(getInitialListings())
+	const city = location.state.city;
+	const id = match.params.id;
 
-	function getInitialListings() {
-  		const temp = localStorage.getItem("listings")
-  		const savedListings = JSON.parse(temp)
-  		return savedListings || {}
+	const [listings, setListings] = updateListings(id);
+	const [querying, setQuerying] = useState(false);
+
+  	const query = async () => {
+  		setQuerying(true);
+  		setListings();
+		setQuerying(false);
   	}
 
-  	const queryProperties = async () => {
-  		setIsUpdating(true)
-
-		const listingService = new PropertyListings(city, state)
-		var newListings = await listingService.getListings()
-
-		let tempListings = { [city.id] : newListings }
-		console.log(tempListings)
-		setListings({ ...listings, [city.id] : newListings })
-
-		setIsUpdating(false)
-  	}
-
-  	useEffect(() => {
-  		const temp = JSON.stringify(listings)
-  		localStorage.setItem("listings", temp)
-  	}, [listings])
-
-  	useEffect(() => {
-		setTitle(city)
-  	})
+  	useEffect(() => { setTitle(city) });
 
 	return (
 		<StyledCity>	
-          <ActionButton onClick={() => queryProperties() } type="submit" variant="primary" isWorking={isUpdating}>Query</ActionButton>
-		  <Listings city={ city } listings = { listings } />
+          <ActionButton onClick={() => query() } type="submit" variant="primary" isWorking={ querying }>Query</ActionButton>
+		  <Listings listings = { listings } />
 		</StyledCity>
 	)
 }

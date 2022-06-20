@@ -1,13 +1,9 @@
 import React from "react"
 
-import CityItem from "./CityItem"
+import ListItem from "./ListItem"
 
-const List = props => {
-	return (
-	<ul>
-		{ props.cities.map(city => ( <ListItem id={ city.id } setCities = { props.setCities } /> )}
-	</ul>
-	)
+const List = ( { cities, setCities } ) => {
+	return ( <ul>{ cities.map(city => (<ListItem key= { city.id } city={ city } setCities = { setCities } />)) }</ul> )
 }
 
 export default List

@@ -6,17 +6,15 @@ import { StyledCities } from './styles'
 import Input from './Input'
 import List from './List'
 
-import { v4 as uuidv4 } from "uuid"
-
 import { getCities } from 'shared/utils/city';
 
 const Cities = () => {
-  const [cities, setCities] = useState(getCities())
+  const [cities, setCities] = getCities();
 
   return (
     <StyledCities>
-      <Input setCities = { setCities } />
-      <List setCities = { setCities } />
+    	<Input setCities = { setCities } />
+      	<List cities = { cities } setCities = { setCities } />
     </StyledCities>
   )
 }
