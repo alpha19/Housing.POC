@@ -1,24 +1,25 @@
-# pull official base image
 FROM node:14-alpine as build-stage
+
+# setup
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
-ARG REACT_APP_RAPID_API_REALTY_IN_US=THIS_IS_SECRET
-ENV REACT_APP_RAPID_API_REALTY_IN_US=$REACT_APP_RAPID_API_REALTY_IN_US
+# ARG REACT_APP_RAPID_API_REALTY_IN_US=THIS_IS_SECRET
+# ENV REACT_APP_RAPID_API_REALTY_IN_US=$REACT_APP_RAPID_API_REALTY_IN_US
 
 
+# install dependencies
 COPY package.json ./
 COPY package-lock.json ./
 
 RUN npm ci --silent
 RUN npm install
 
+# build
 COPY . .
-
-# start app
 RUN npm run build
 
-# Production
+# run
 FROM nginx:stable-alpine
 COPY --from=build-stage /app/build /usr/share/nginx/html
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
